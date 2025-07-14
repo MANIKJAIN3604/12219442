@@ -1,69 +1,65 @@
-# React + TypeScript + Vite
+# URL Shortener & Analytics Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, client-side URL shortener built with React, TypeScript, and Material UI. This application allows users to generate unique short links, manage their validity, and view detailed analytics—all without a backend database. All major events are logged using a custom logging middleware for robust observability.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Shorten up to 5 URLs at once** with optional custom shortcodes and validity periods (default: 30 minutes)
+- **Client-side validation** for URLs, shortcodes, and validity
+- **Unique short link generation** (auto or user-defined, with collision checks)
+- **Material UI** for a clean, responsive, and accessible interface
+- **Redirection** handled via React Router, with expiry checks
+- **Analytics Dashboard**:
+  - Track total clicks per short URL
+  - View click details: timestamp, source, and (placeholder) location
+- **Copy-to-clipboard** for easy sharing of short links
+- **Persistent storage** using browser localStorage/sessionStorage
+- **Comprehensive logging** via a reusable middleware (no console.log!)
+- **User-friendly error handling** and feedback
 
-## Expanding the ESLint configuration
+## 🏗️ Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+12219442/
+├── frontend/              # React app (Material UI, all logic/UI)
+├── logging-middleware/    # Reusable logging module (API-based)
+└── README.md              # This file
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Install dependencies:**
+   ```bash
+   cd frontend
+   npm install
+   ```
+2. **Start the development server:**
+   ```bash
+   npm start
+   ```
+3. **Open your browser:**
+   Visit [http://localhost:3000](http://localhost:3000)
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🛠️ Logging Middleware
+- All logs (page loads, errors, URL creation, redirects, analytics views, etc.) are sent to a remote API using a custom middleware.
+- No use of `console.log` or browser logging—everything is tracked via the logger for full traceability.
+
+## 📊 Analytics & Insights
+- Every short URL tracks click events, including when, where, and how the link was accessed.
+- The statistics page provides a clear overview of all your links and their performance.
+
+## 🖥️ Screenshots
+- Please see the `/screenshots` folder for both desktop and mobile views (add your own screenshots here).
+
+## 📦 Tech Stack
+- **React** (with TypeScript)
+- **Material UI** for UI components
+- **Vite** for fast development
+- **Custom Logging Middleware** (TypeScript, reusable)
+
+## 📚 License
+This project is for educational and evaluation purposes.
+
+---
+
+*Developed for the Campus Hiring Evaluation. For any queries, contact the repository owner.*
